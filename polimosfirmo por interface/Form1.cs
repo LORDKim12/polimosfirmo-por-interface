@@ -107,36 +107,46 @@ namespace polimosfirmo_por_interface
             if (radioButton1.Checked)
             {
                 int NumdeTarjeta;
-                if (int.TryParse(txtTarjeta.Text, out NumdeTarjeta))
+                if (!int.TryParse(txtTarjeta.Text, out NumdeTarjeta))
                 {
-                    MessageBox.Show("favor de rellenar todos los espacios");
+                    MessageBox.Show("favor de rellenar todos los espacios"); return;
                 }
 
                 int fechaVencimiento;
-                if (int.TryParse(txtFecha.Text, out fechaVencimiento))
+                if (!int.TryParse(txtFecha.Text, out fechaVencimiento))
                 {
-                    MessageBox.Show("favor de llenar todosl los espacios");
+                    MessageBox.Show("favor de llenar todos los espacios"); return;
+                }
+                if (string.IsNullOrEmpty(textBox2.Text))
+                {
+                    MessageBox.Show("Falta el nombre del titular");
+                    return;
                 }
 
                 metodo = new TarjetadeCredito(NumdeTarjeta, textBox2.Text, fechaVencimiento);
-                MessageBox.Show("Gracias por su compra");
+               
 
             }
             else if (radioButton2.Checked)
             {
+                if (string.IsNullOrEmpty(txtCorreo.Text))
+                {
+                    MessageBox.Show("Favor de ingresar el correo");
+                    return;
+                }
                 metodo = new Paypal(txtCorreo.Text);
-                MessageBox.Show("Gracias por su compra");
+                
             }
             else if (radioButton3.Checked)
             {
                 if (string.IsNullOrEmpty( textBox5.Text))
                 {
-                    MessageBox.Show("favor de llenar todos los espacios");
+                    MessageBox.Show("favor de llenar todos los espacios"); return;
                 }
                 int NumCta;
                 if(!int.TryParse( textBox3.Text, out NumCta))
                 {
-                    MessageBox.Show("favor de llenar todos los espacios");
+                    MessageBox.Show("favor de llenar todos los espacios"); return;
                 }
 
                 metodo = new Transferencia(textBox5.Text, NumCta);
