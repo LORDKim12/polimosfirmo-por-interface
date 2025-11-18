@@ -15,7 +15,7 @@ namespace polimosfirmo_por_interface.Clases
         }
         public void ProcesarPago(double pago)
         {
-            MessageBox.Show("pago:" + pago);
+            MessageBox.Show("Gracias por su compra");
         }
     }
 }
